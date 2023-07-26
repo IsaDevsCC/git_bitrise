@@ -49,9 +49,41 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun ComposableExercise() {
     Box(
-        modifier = Modifier.size(200.dp).background(Color.Green)
+        modifier = Modifier
+            .size(140.dp)
+            .background(Color.Green)
     ) {
-        // Exercice content
+        Box(
+            modifier = Modifier
+                .background(Color.Red)
+                .align(Alignment.Center)
+                .size(90.dp)
+        ) {
+            Box(
+                modifier = Modifier
+                    .background(Color.White)
+                    .size(15.dp)
+                    .align(Alignment.TopStart)
+            )
+            Box(modifier = Modifier
+                .background(Color.Blue)
+                .size(25.dp)
+                .align(Alignment.CenterEnd)
+            )
+        }
+        Box(
+            modifier = Modifier
+                .background(Color.Gray)
+                .height(120.dp)
+                .width(30.dp)
+                .align(Alignment.Center)
+        )
+        Box(
+            modifier = Modifier
+                .background(Color.Black)
+                .size(40.dp)
+                .align(Alignment.BottomStart)
+        )
     }
 }
 
