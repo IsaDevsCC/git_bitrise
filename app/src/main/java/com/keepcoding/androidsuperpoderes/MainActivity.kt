@@ -3,6 +3,7 @@ package com.keepcoding.androidsuperpoderes
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -15,6 +16,8 @@ import com.keepcoding.androidsuperpoderes.ui.theme.AndroidSuperpoderesTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // setContent()
         setContent {
             AndroidSuperpoderesTheme {
                 // A surface container using the 'background' color from the theme
@@ -22,7 +25,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    Greeting("Android", "Compose")
                 }
             }
         }
@@ -30,17 +33,20 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+fun Greeting(name: String, lastName: String, modifier: Modifier = Modifier) {
+    Column {
+        Text(
+            text = "Hello $name!",
+            modifier = modifier
+        )
+        Text(text = lastName)
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     AndroidSuperpoderesTheme {
-        Greeting("Android")
+        Greeting("Android", "Compose")
     }
 }
