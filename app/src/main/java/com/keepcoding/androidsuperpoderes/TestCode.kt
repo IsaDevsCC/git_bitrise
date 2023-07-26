@@ -1,6 +1,7 @@
 package com.keepcoding.androidsuperpoderes
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -24,7 +25,9 @@ import com.keepcoding.androidsuperpoderes.ui.theme.AndroidSuperpoderesTheme
 fun BaseComposableTest(
     content: @Composable () -> Unit
 ) {
-    Column {
+    Column(
+        verticalArrangement = Arrangement.Center
+    ) {
         Spacer(
             modifier = Modifier
                 .height(100.dp)
