@@ -7,7 +7,8 @@ import com.keepcoding.androidsuperpoderes.domain.model.HeroModel
 fun HeroDto.toHeroModel() = HeroModel(
     id = id ?: "",
     photoUrl = photo ?: "",
-    name = name ?: ""
+    name = name ?: "",
+    description = description ?: ""
 )
 
 fun HeroDto.toHeroLocal() = HeroLocal(
@@ -20,13 +21,15 @@ fun HeroDto.toHeroLocal() = HeroLocal(
 fun HeroLocal.toHeroModel() = HeroModel(
     id = id,
     photoUrl = photoUrl,
-    name = name
+    name = name,
+    description = "" // TODO
 )
 
 fun HeroDto.toHeroModelConstructorWithoutName() = HeroModel(
     id = id ?: "",
     name = name ?: "",
-    photoUrl = photo ?: ""
+    photoUrl = photo ?: "",
+    description = description ?: ""
 )
 /*
 

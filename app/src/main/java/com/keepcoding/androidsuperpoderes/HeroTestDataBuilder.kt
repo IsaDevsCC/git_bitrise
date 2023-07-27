@@ -1,11 +1,13 @@
-package com.keepcoding.androidsuperpoderes.presentation
+package com.keepcoding.androidsuperpoderes
 
 import com.keepcoding.androidsuperpoderes.domain.model.HeroModel
+
 
 class HeroTestDataBuilder {
     val id = "test-id"
     var name = ""
     var photoUrl = ""
+    var description = ""
     var numElements: Int = 1
 
     fun withName(name: String): HeroTestDataBuilder {
@@ -15,6 +17,11 @@ class HeroTestDataBuilder {
 
     fun withPhotoUrl(photoUrl: String): HeroTestDataBuilder {
         this.photoUrl = photoUrl
+        return this
+    }
+
+    fun withDescription(description: String): HeroTestDataBuilder {
+        this.description = description
         return this
     }
 
@@ -32,7 +39,8 @@ class HeroTestDataBuilder {
                 HeroModel(
                 id,
                 name = name,
-                photoUrl = photoUrl
+                photoUrl = photoUrl,
+                description = description
             )
             )
         }
@@ -40,10 +48,11 @@ class HeroTestDataBuilder {
         return list.toList()
     }
 
-    fun buildSingle() : HeroModel =
-        HeroModel(
-            id,
-            name = name,
-            photoUrl = photoUrl
-        )
+    fun buildSingle() = HeroModel(
+        id = id,
+        name = name,
+        photoUrl = photoUrl,
+        description = description
+    )
 }
+

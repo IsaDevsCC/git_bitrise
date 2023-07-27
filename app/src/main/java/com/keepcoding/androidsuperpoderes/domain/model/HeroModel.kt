@@ -3,7 +3,8 @@ package com.keepcoding.androidsuperpoderes.domain.model
 data class HeroModel(
     val id: String,
     val name: String,
-    val photoUrl: String
+    val photoUrl: String,
+    val description: String
 )
 
 // POJO
