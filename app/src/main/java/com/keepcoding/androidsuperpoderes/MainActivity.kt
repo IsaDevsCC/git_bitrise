@@ -17,7 +17,7 @@ class MainActivity : ComponentActivity() {
                     // TODO
                 }
                 // A surface container using the 'background' color from the theme
-                Exercise1()
+                //Exercise1()
                 /*BaseComposable {
                     Surface(
                         modifier = Modifier.fillMaxSize(),
