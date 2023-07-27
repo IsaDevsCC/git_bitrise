@@ -2,7 +2,9 @@ package com.keepcoding.androidsuperpoderes.navigation
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
+import com.keepcoding.androidsuperpoderes.presentation.detail.HeroDetailScreen
 import com.keepcoding.androidsuperpoderes.presentation.forgot.ForgotPasswordScreen
 import com.keepcoding.androidsuperpoderes.presentation.list.HeroListScreen
 import com.keepcoding.androidsuperpoderes.presentation.login.LoginScreen
@@ -26,8 +28,20 @@ fun NavGraphBuilder.addForgotPasswordScreen() {
     }
 }
 
-fun NavGraphBuilder.addHeroListScreen() {
+fun NavGraphBuilder.addHeroListScreen(navController: NavHostController) {
     composable(Screen.HeroListScreen.route) {
-        HeroListScreen()
+        HeroListScreen { heroId ->
+            navController.navigate("${Screen.HeroDetailScreen.route}/$heroId")
+        }
+    }
+}
+
+fun NavGraphBuilder.addHeroDetailScreen() {
+    composable(
+        route = Screen.HeroDetailScreen.route + "/{heroId}",
+        arguments = Screen.HeroDetailScreen.arguments
+    ) { navBackStackEntry ->
+        val id = navBackStackEntry.arguments?.getString("heroId") ?: ""
+        HeroDetailScreen(id = id)
     }
 }

@@ -1,19 +1,16 @@
 package com.keepcoding.androidsuperpoderes.presentation.list
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.keepcoding.androidsuperpoderes.HeroTestDataBuilder
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun HeroListScreen(
-    superHeroListViewModel: HeroListViewModel = koinViewModel()
+    superHeroListViewModel: HeroListViewModel = koinViewModel(),
+    onItemClick: (String) -> Unit
 ) {
 
     // Get data from ViewModel
@@ -32,8 +29,10 @@ fun HeroListScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         items(heroList.size) { i ->
-            // Show each Hero
-            ShowHero(heroList[i])
+            val hero = heroList[i]
+            ShowHero(hero) {
+                onItemClick.invoke(hero.id)
+            }
         }
     }
 }
@@ -41,5 +40,7 @@ fun HeroListScreen(
 @Preview
 @Composable
 fun HeroListScreenPreview() {
-    HeroListScreen()
+    HeroListScreen {
+        // Empty callback
+    }
 }

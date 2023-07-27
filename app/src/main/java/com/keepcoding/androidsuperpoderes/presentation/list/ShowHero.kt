@@ -1,5 +1,6 @@
 package com.keepcoding.androidsuperpoderes.presentation.list
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -27,12 +28,16 @@ import com.keepcoding.androidsuperpoderes.domain.model.HeroModel
 // Mostrar la imagen con coil
 @Composable
 fun ShowHero(
-    hero: HeroModel
+    hero: HeroModel,
+    onClick: (() -> Unit)? = null
 ) {
     Row(
         modifier = Modifier
             .padding(8.dp)
             .fillMaxWidth()
+            .clickable {
+                onClick?.invoke()
+            }
     ) {
         AsyncImage(
             modifier = Modifier
@@ -81,5 +86,7 @@ fun ShowHeroPreview() {
             )
 
             .buildSingle()
-    )
+    ) {
+        // Nothing todo here
+    }
 }
