@@ -36,9 +36,11 @@ fun LoginScreen(
     onLoginSuccess: () -> Unit
 ) {
 
-    var password = ""
-
     var email by remember {
+        mutableStateOf("")
+    }
+
+    var password by remember {
         mutableStateOf("")
     }
 
@@ -62,8 +64,13 @@ fun LoginScreen(
         )
 
         TextField(
-            value = "Email",
-            onValueChange = {},
+            value = email,
+            placeholder = {
+                  Text("Email")
+            },
+            onValueChange = { newValue ->
+                email = newValue
+            },
             leadingIcon = {
                 Image(
                     imageVector = Icons.Default.Email,
@@ -73,8 +80,13 @@ fun LoginScreen(
         )
 
         TextField(
-            value = "Password",
-            onValueChange = {},
+            value = password,
+            placeholder = {
+                  Text("Password")
+            },
+            onValueChange = {
+                password = it
+            },
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Outlined.Lock,
