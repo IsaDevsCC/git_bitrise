@@ -6,6 +6,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.keepcoding.androidsuperpoderes.presentation.HeroTestDataBuilder
 import com.keepcoding.androidsuperpoderes.domain.model.HeroModel
 
+
+// Ejercicio en mostrar un diseño de un Hero
+// Mostrar la imagen con coil
 @Composable
 fun ShowHero(
     hero: HeroModel

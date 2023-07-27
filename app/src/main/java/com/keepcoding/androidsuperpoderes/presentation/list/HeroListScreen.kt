@@ -13,12 +13,19 @@ import org.koin.androidx.compose.koinViewModel
 fun HeroListScreen(
     superHeroListViewModel: HeroListViewModel = koinViewModel()
 ) {
+
+    // Get data from ViewModel
+
+    // Init List
     Box(modifier = Modifier.fillMaxSize()) {
         Text(
             modifier = Modifier.align(Alignment.Center),
             text = "Hello ${superHeroListViewModel.testString}"
         )
     }
+    // Show each Hero
+
+
 }
 
 @Preview
