@@ -7,13 +7,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun HeroListScreen(
-    // TODO inyectar viewModel
+    superHeroListViewModel: HeroListViewModel = koinViewModel()
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
-        Text(modifier = Modifier.align(Alignment.Center), text = "Hero List")
+        Text(
+            modifier = Modifier.align(Alignment.Center),
+            text = "Hello ${superHeroListViewModel.testString}"
+        )
     }
 }
 
