@@ -33,7 +33,9 @@ import com.keepcoding.androidsuperpoderes.R
 
 @Composable
 fun LoginScreen(
-    onLoginSuccess: () -> Unit
+    onLoginSuccess: () -> Unit,
+    // Prueba de paso de parámetros
+    onForgotClicked: (Int) -> Unit
 ) {
 
     var email by remember {
@@ -117,6 +119,20 @@ fun LoginScreen(
                text = "Login"
             )
         }
+        Spacer(
+            modifier = Modifier
+                .size(20.dp)
+        )
+
+        Button(
+            onClick = {
+                onForgotClicked.invoke(0)
+            }
+        ) {
+            Text(
+                text = "Forgot"
+            )
+        }
 
         /*
         onClick = {
@@ -132,7 +148,12 @@ fun LoginScreen(
 @Preview
 @Composable
 fun LoginScreenPreview() {
-    LoginScreen {
+    LoginScreen(
+        onLoginSuccess = {
 
-    }
+        },
+        onForgotClicked = { test ->
+
+        }
+    )
 }
