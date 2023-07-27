@@ -14,8 +14,7 @@ class MainActivity : ComponentActivity() {
         // setContent()
         setContent {
             AndroidSuperpoderesTheme {
-                TestList()
-                //NavigationGraph()
+                NavigationGraph()
             }
         }
     }
