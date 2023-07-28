@@ -24,6 +24,7 @@ fun HeroListScreen(
     ) {
         val heroList = state.value
         items(heroList?.size ?: 0) { i ->
+            // Unwrap
             heroList?.get(i)?.let { hero ->
                 ShowHero(hero) {
                     onItemClick.invoke(hero.id)
