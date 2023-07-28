@@ -21,10 +21,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.viewinterop.AndroidView
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.keepcoding.androidsuperpoderes.HeroTestDataBuilder
 import com.keepcoding.androidsuperpoderes.R
+import com.keepcoding.androidsuperpoderes.components.StarComponent
 import com.keepcoding.androidsuperpoderes.domain.model.HeroModel
 
 
@@ -35,12 +37,18 @@ fun ShowHero(
     hero: HeroModel,
     onClick: (() -> Unit)? = null
 ) {
+    /* Ejemplo de condicional en la vista
     var state by remember {
         mutableStateOf(false)
     }
 
     if (state) {
         // Show icon
+    }
+    */
+
+    var starred by remember {
+        mutableStateOf(false)
     }
 
     Row(
@@ -54,10 +62,7 @@ fun ShowHero(
         AsyncImage(
             modifier = Modifier
                 .size(100.dp)
-                .clip(CircleShape)
-                .clickable {
-                   state = !state
-                },
+                .clip(CircleShape),
             placeholder = painterResource(id = R.drawable.ball),
             error = painterResource(id = R.drawable.ball),
             model = ImageRequest.Builder(LocalContext.current)
@@ -65,20 +70,41 @@ fun ShowHero(
                 .build()
             , contentDescription = ""
         )
-        Column(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally
+        Row(
+            modifier = Modifier.fillMaxWidth()
         ) {
-            Text(
-                text = hero.name,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
+            Column(
+                modifier = Modifier.weight(1f),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    text = hero.name,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+                Text(
+                    text = hero.description,
+                    maxLines = 4,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
+
+            // Star
+            AndroidView(
+                modifier = Modifier.clickable {
+                   val newState = !starred
+                    starred = newState
+                },
+                factory = { context ->
+                    StarComponent(context).apply {
+                        this.checked = starred
+                    }
+                },
+                update = {
+                    it.checked = starred
+                }
             )
-            Text(
-                text = hero.description,
-                maxLines = 4,
-                overflow = TextOverflow.Ellipsis
-            )
+
         }
     }
 }
