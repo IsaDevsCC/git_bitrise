@@ -4,6 +4,8 @@ import android.util.Log
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.collectIndexed
 import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.fold
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.transform
 
@@ -33,7 +35,20 @@ class FlowExamples {
     }
 
     suspend fun exampleFold() {
+        val flow = flow {
+            emit(1)
+            emit(2)
+            emit(3)
+            emit(4)
+        }
 
+        Log.d("ExampleFlow", "Before")
+
+        val result = flow.fold("Test ") { acc, value ->
+            acc + value
+        }
+
+        Log.d("ExampleFlow", result.toString())
     }
 
     suspend fun exercise1() {
