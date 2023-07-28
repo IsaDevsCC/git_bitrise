@@ -1,12 +1,15 @@
 package com.keepcoding.androidsuperpoderes.presentation.list
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.keepcoding.androidsuperpoderes.components.ShowError
 import com.keepcoding.androidsuperpoderes.presentation.common.ShowHero
+import com.keepcoding.androidsuperpoderes.presentation.theme.globalPadding
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -24,6 +27,9 @@ fun HeroListScreen(
     }
 
     LazyColumn(
+        modifier = Modifier.padding(
+            vertical = globalPadding
+        ),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         val heroList = state.value

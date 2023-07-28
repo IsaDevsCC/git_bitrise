@@ -3,4 +3,6 @@ package com.keepcoding.androidsuperpoderes.presentation.theme
 import androidx.compose.ui.unit.dp
 
 
-val globalSpacer = 8.dp
+val globalPadding = 8.dp
+val globalElevation = 20.dp
+val globalRoundedCornerShape = 10.dp

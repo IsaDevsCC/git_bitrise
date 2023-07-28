@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -28,6 +30,9 @@ import com.keepcoding.androidsuperpoderes.HeroTestDataBuilder
 import com.keepcoding.androidsuperpoderes.R
 import com.keepcoding.androidsuperpoderes.components.StarComponent
 import com.keepcoding.androidsuperpoderes.domain.model.HeroModel
+import com.keepcoding.androidsuperpoderes.presentation.theme.globalElevation
+import com.keepcoding.androidsuperpoderes.presentation.theme.globalPadding
+import com.keepcoding.androidsuperpoderes.presentation.theme.globalRoundedCornerShape
 
 
 // Ejercicio en mostrar un diseño de un Hero
@@ -51,60 +56,67 @@ fun ShowHero(
         mutableStateOf(false)
     }
 
-    Row(
-        modifier = Modifier
-            .padding(8.dp)
-            .fillMaxWidth()
-            .clickable {
-                onClick?.invoke()
-            }
+    Card(
+        modifier = Modifier.padding(globalPadding),
+        elevation = globalElevation,
+        shape = RoundedCornerShape(globalRoundedCornerShape)
     ) {
-        AsyncImage(
-            modifier = Modifier
-                .size(100.dp)
-                .clip(CircleShape),
-            placeholder = painterResource(id = R.drawable.ball),
-            error = painterResource(id = R.drawable.ball),
-            model = ImageRequest.Builder(LocalContext.current)
-                .data(hero.photoUrl)
-                .build()
-            , contentDescription = ""
-        )
         Row(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .padding(8.dp)
+                .fillMaxWidth()
+                .clickable {
+                    onClick?.invoke()
+                },
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Column(
-                modifier = Modifier.weight(1f),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(
-                    text = hero.name,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
-                )
-                Text(
-                    text = hero.description,
-                    maxLines = 4,
-                    overflow = TextOverflow.Ellipsis
-                )
-            }
-
-            // Star
-            AndroidView(
-                modifier = Modifier.clickable {
-                   val newState = !starred
-                    starred = newState
-                },
-                factory = { context ->
-                    StarComponent(context).apply {
-                        this.checked = starred
-                    }
-                },
-                update = {
-                    it.checked = starred
-                }
+            AsyncImage(
+                modifier = Modifier
+                    .size(100.dp)
+                    .clip(CircleShape),
+                placeholder = painterResource(id = R.drawable.ball),
+                error = painterResource(id = R.drawable.ball),
+                model = ImageRequest.Builder(LocalContext.current)
+                    .data(hero.photoUrl)
+                    .build(), contentDescription = ""
             )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Column(
+                    modifier = Modifier.weight(1f),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = hero.name,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                    Text(
+                        text = hero.description,
+                        maxLines = 4,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
 
+                // Star
+                AndroidView(
+                    modifier = Modifier.clickable {
+                        val newState = !starred
+                        starred = newState
+                    },
+                    factory = { context ->
+                        StarComponent(context).apply {
+                            this.checked = starred
+                        }
+                    },
+                    update = {
+                        it.checked = starred
+                    }
+                )
+
+            }
         }
     }
 }
@@ -116,15 +128,7 @@ fun ShowHeroPreview() {
     ShowHero(
         HeroTestDataBuilder()
             .withName("Sample name long text long text long text long textlong text long text long text")
-            .withDescription(
-                "Sample name long text long text long text long textlong text long text long text" +
-                "Sample name long text long text long text long textlong text long text long text" +
-                "Sample name long text long text long text long textlong text long text long text" +
-                "Sample name long text long text long text long textlong text long text long text" +
-                "Sample name long text long text long text long textlong text long text long text" +
-                "Sample name long text long text long text long textlong text long text long text" +
-                "Sample name long text long text long text long textlong text long text long text"
-            )
+            .withDescription("")
 
             .buildSingle()
     ) {
