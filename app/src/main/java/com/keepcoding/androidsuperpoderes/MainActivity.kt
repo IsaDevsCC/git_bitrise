@@ -13,7 +13,9 @@ class MainActivity : ComponentActivity() {
 
         // setContent()
         setContent {
-            AndroidSuperpoderesTheme(window) {
+            AndroidSuperpoderesTheme(
+                dynamicColor = false
+            ) {
                 NavigationGraph()
             }
         }
