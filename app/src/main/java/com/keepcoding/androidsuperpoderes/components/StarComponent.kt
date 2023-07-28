@@ -14,8 +14,6 @@ class StarComponent @JvmOverloads constructor(
     // Mostrar star cuando no esté checkeado
     // Mostrar star_filled cuando esté checkeado
     init {
-        // TODO inflate view
+        // TODO inflate view y obtener una instancia del ImageView
     }
-
-
 }
