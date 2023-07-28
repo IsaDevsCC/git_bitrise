@@ -20,7 +20,7 @@ class HeroListViewModel(
     private val _errorMessage = MutableLiveData<String?>()
     val errorMessage: LiveData<String?> get() = _errorMessage
 
-    val examples = FlowExamples()
+    //val examples = FlowExamples()
 
     init {
         getData()
@@ -28,9 +28,8 @@ class HeroListViewModel(
 
     private fun getData() {
         viewModelScope.launch {
-            examples.exampleFold()
-
-            /*try {
+            //examples.exampleFold()
+            try {
                 _errorMessage.value = null
                 val result = withContext(Dispatchers.IO) {
                     getHeroListUseCase.invoke()
@@ -39,7 +38,6 @@ class HeroListViewModel(
             } catch (t: Throwable) {
                 _errorMessage.value = "Error"
             }
-            */
         }
     }
 }
