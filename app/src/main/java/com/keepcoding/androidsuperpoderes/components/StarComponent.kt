@@ -14,13 +14,29 @@ class StarComponent @JvmOverloads constructor(
 
     private val imageView: ImageView
 
-    // TODO
-    // Variable nueva de tipo Boolean
-    // Estado inicial unchecked
-    // Cada vez que cambie el estado cambiar el recurso dentro del ImageView
+    var checked: Boolean = false
+        set(value) {
+            field = value
+            selectImage()
+        }
+
+    /* Función equivalente
+    fun setChecked(checked: Boolean){
+        this.checked = checked
+        selectImage()
+    }
+    */
 
     init {
         imageView = inflate(context, R.layout.component_star, this)
             .findViewById(R.id.iv_star)
     }
+
+    private fun selectImage() = imageView.setImageResource(
+        if (checked) {
+            R.drawable.star_filled
+        } else {
+            R.drawable.star
+        }
+    )
 }
