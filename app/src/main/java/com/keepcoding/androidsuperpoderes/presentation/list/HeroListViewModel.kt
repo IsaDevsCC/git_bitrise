@@ -28,7 +28,7 @@ class HeroListViewModel(
 
     private fun getData() {
         viewModelScope.launch {
-            examples.createFlowFromList()
+            examples.exampleFold()
 
             /*try {
                 _errorMessage.value = null
