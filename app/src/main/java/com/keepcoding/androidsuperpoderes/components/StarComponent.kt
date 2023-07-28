@@ -3,6 +3,8 @@ package com.keepcoding.androidsuperpoderes.components
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.FrameLayout
+import android.widget.ImageView
+import com.keepcoding.androidsuperpoderes.R
 
 class StarComponent @JvmOverloads constructor(
     context: Context,
@@ -10,10 +12,15 @@ class StarComponent @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
-    // Gestionar ambos estados checked y !checked
-    // Mostrar star cuando no esté checkeado
-    // Mostrar star_filled cuando esté checkeado
+    private val imageView: ImageView
+
+    // TODO
+    // Variable nueva de tipo Boolean
+    // Estado inicial unchecked
+    // Cada vez que cambie el estado cambiar el recurso dentro del ImageView
+
     init {
-        // TODO inflate view y obtener una instancia del ImageView
+        imageView = inflate(context, R.layout.component_star, this)
+            .findViewById(R.id.iv_star)
     }
 }
