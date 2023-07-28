@@ -2,6 +2,7 @@ package com.keepcoding.androidsuperpoderes.ui.theme
 
 import android.app.Activity
 import android.os.Build
+import android.view.Window
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
@@ -39,6 +40,7 @@ private val LightColorScheme = lightColorScheme(
 
 @Composable
 fun AndroidSuperpoderesTheme(
+    window: Window,
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,

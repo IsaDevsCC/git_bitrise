@@ -67,7 +67,5 @@ fun Greeting(name: String, lastName: String, modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    AndroidSuperpoderesTheme {
-        Greeting("Android", "Compose")
-    }
+    Greeting("Android", "Compose")
 }
