@@ -1,4 +1,4 @@
-package com.keepcoding.androidsuperpoderes.ui.theme
+package com.keepcoding.androidsuperpoderes.presentation.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

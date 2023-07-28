@@ -1,4 +1,4 @@
-package com.keepcoding.androidsuperpoderes.ui.theme
+package com.keepcoding.androidsuperpoderes.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 

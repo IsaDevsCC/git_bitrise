@@ -2,9 +2,8 @@ package com.keepcoding.androidsuperpoderes.presentation.detail
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
-import com.keepcoding.androidsuperpoderes.HeroTestDataBuilder
 import com.keepcoding.androidsuperpoderes.components.ShowError
-import com.keepcoding.androidsuperpoderes.presentation.list.ShowHero
+import com.keepcoding.androidsuperpoderes.presentation.common.ShowHero
 import org.koin.androidx.compose.koinViewModel
 
 @Composable

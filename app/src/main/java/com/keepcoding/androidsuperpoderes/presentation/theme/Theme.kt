@@ -1,8 +1,7 @@
-package com.keepcoding.androidsuperpoderes.ui.theme
+package com.keepcoding.androidsuperpoderes.presentation.theme
 
 import android.app.Activity
 import android.os.Build
-import android.view.Window
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme

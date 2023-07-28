@@ -1,4 +1,4 @@
-package com.keepcoding.androidsuperpoderes.presentation.list
+package com.keepcoding.androidsuperpoderes.presentation.common
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
