@@ -14,12 +14,14 @@ class HeroListViewModel(
     private val getHeroListUseCase: GetHeroListUseCase
 ) : ViewModel() {
 
-    val testString = "Test"
-
     private val _heroList = MutableLiveData<List<HeroModel>>()
     val heroList: LiveData<List<HeroModel>> get() = _heroList
 
-    fun getData() {
+    init {
+        getData()
+    }
+
+    private fun getData() {
         viewModelScope.launch {
             try {
                 val result = withContext(Dispatchers.IO) {
