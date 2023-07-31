@@ -7,7 +7,10 @@ import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.fold
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.reduce
+import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.flow.transform
+import kotlinx.coroutines.flow.withIndex
 
 class FlowExamples {
 
@@ -121,7 +124,97 @@ class FlowExamples {
         flow.collect {
             Log.d("Ejercicio2", "Número letras: $it")
         }
+    }
 
+    suspend fun exerciseSum() {
+        val list = listOf(
+            1,
+            5,
+            7,
+            8
+        )
+
+        var result = list
+            .asFlow()
+            .reduce { acc, b ->
+                acc + b
+            }
+
+        Log.d("SUM", "Sumatorio: $result")
+        // Mostrar un log con el resultado del sumatorio usando flows
+    }
+
+    suspend fun exercise3() {
+        val heroList = listOf(
+            "Maestro Roshi",
+            "Mr. Satán",
+            "Krilin",
+            "Goku",
+            "Vegeta",
+            "Bulma",
+            "Freezer",
+            "Beerus",
+            "Piccolo",
+            "Kaito",
+            "Raditz",
+            "Célula",
+            "Trunks del Futuro",
+            "Quake (Daisy Johnson)",
+            "starry night",
+            "San Goku",
+            "Gohan Prime",
+            "Broly"
+        )
+        val result =
+            heroList
+                .asFlow()
+                .filter { it.length % 2 == 1 }
+                .take(2)
+                .fold("Bienvenido, ") { acc, value ->
+                    "$acc $value y"
+                }
+                /*.withIndex()
+                .fold("Bienvenido, ") { acc, value ->
+                    if (value.index == 0) {
+                        "$acc ${value.value} y"
+                    } else {
+                        "$acc ${value.value}"
+                    }
+                }*/
+        //Log.d("Exercise3", result)
+        Log.d("Exercise3", result.dropLast(2))
+    }
+
+    suspend fun exercise3Reduce() {
+        val heroList = listOf(
+            "Maestro Roshi",
+            "Mr. Satán",
+            "Krilin",
+            "Goku",
+            "Vegeta",
+            "Bulma",
+            "Freezer",
+            "Beerus",
+            "Piccolo",
+            "Kaito",
+            "Raditz",
+            "Célula",
+            "Trunks del Futuro",
+            "Quake (Daisy Johnson)",
+            "starry night",
+            "San Goku",
+            "Gohan Prime",
+            "Broly"
+        )
+        val result =
+            heroList
+                .asFlow()
+                .filter { it.length % 2 == 1 }
+                .take(2)
+                .reduce { acc, value ->
+                    "$acc y $value"
+                }
+        Log.d("Exercise3", "Bienvenido, $result")
     }
 
 }

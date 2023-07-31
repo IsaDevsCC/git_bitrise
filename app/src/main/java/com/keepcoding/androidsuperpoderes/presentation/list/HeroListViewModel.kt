@@ -20,7 +20,7 @@ class HeroListViewModel(
     private val _errorMessage = MutableLiveData<String?>()
     val errorMessage: LiveData<String?> get() = _errorMessage
 
-    //val examples = FlowExamples()
+    val examples = FlowExamples()
 
     init {
         getData()
