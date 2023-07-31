@@ -11,10 +11,22 @@ class RangeSelectorDelegate(
     var currentTop = maxValue
 
     fun moveTop(newValue: Int) {
-
+        currentTop = if (newValue >= maxValue) {
+            maxValue
+        } else if(newValue <= currentBottom) {
+            currentBottom + 1
+        } else {
+            newValue
+        }
     }
 
     fun moveBottom(newValue: Int) {
-
+        currentBottom = if (newValue >= currentTop) {
+            currentTop - 1
+        } else if (newValue <= minValue) {
+            minValue
+        } else {
+            newValue
+        }
     }
 }
