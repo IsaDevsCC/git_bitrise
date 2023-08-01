@@ -4,9 +4,11 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.keepcoding.androidsuperpoderes.HeroTestDataBuilder
 import com.keepcoding.androidsuperpoderes.domain.usecase.GetHeroListUseCase
 import com.keepcoding.androidsuperpoderes.testutil.DefaultDispatcherRule
+import com.keepcoding.androidsuperpoderes.testutil.getOrAwaitValue
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.*
@@ -15,7 +17,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
-
+@ExperimentalCoroutinesApi
 class HeroListViewModelTest {
     @get:Rule
     val instantExecutorRule = InstantTaskExecutorRule()
@@ -36,18 +38,17 @@ class HeroListViewModelTest {
     }
 
     @Test
-    fun testCoroutinesTestWithMock() = runTest {
+    fun `WHEN viewModel init EXPECT data at LiveData`() = runTest {
         coEvery { getHeroListUseCase.invoke() } returns HeroTestDataBuilder()
             .withNumElements(15)
             .buildList()
 
-        // Creo un viewModel
-        // solicitio los datos
+        val viewModel = HeroListViewModel(getHeroListUseCase)
 
-        // escuchar al livedata
-        //liveData.getOrAwaitValue()
+        val res = viewModel.heroList.getOrAwaitValue()
 
-        // Assert
+        assertThat(res.size, `is`(15))
+
     }
 
 }
