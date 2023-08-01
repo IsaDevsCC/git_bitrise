@@ -34,7 +34,7 @@ class HeroTestDataBuilder {
     fun buildList(): List<HeroModel> {
         val list = mutableListOf<HeroModel>()
 
-        for(i in 0..numElements) {
+        for(i in 0 until numElements) {
             list.add(
                 HeroModel(
                 id,
