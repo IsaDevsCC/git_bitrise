@@ -38,4 +38,13 @@ class HeroModelTest {
         assertThat(hero.name, `is`("Alex"))
     }
 
+    /**
+     * Movido a StringExtTest
+     */
+    @Test
+    fun `WHEN creates heroModel EXPECT photoUrl contains schema`() {
+        //assertThat(heroModel.photoUrl, `is`("foto"))
+        assertThat(heroModel.photoUrl, heroModel.photoUrl.startsWith("https"))
+    }
+
 }

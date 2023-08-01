@@ -8,6 +8,7 @@ import com.keepcoding.androidsuperpoderes.data.remote.RemoteDataSource
 import com.keepcoding.androidsuperpoderes.data.remote.dto.HeroDto
 import com.keepcoding.androidsuperpoderes.domain.model.HeroModel
 import com.keepcoding.androidsuperpoderes.domain.model.LocationModel
+import com.keepcoding.androidsuperpoderes.ext.hasHttps
 
 class HeroRepositoryImpl(
     private val remoteDataSource: RemoteDataSource,
@@ -21,7 +22,8 @@ class HeroRepositoryImpl(
             return localData.map { it.toHeroModel() }
         } else {
             val remoteData = remoteDataSource.getHeroList().filter {
-                it.id?.isNotEmpty() == true
+                (it.id?.isNotEmpty() == true) &&
+                (it.photo?.hasHttps() == true)
             }
             localDataSource.insertHeroList(remoteData.map { it.toHeroLocal() })
 
