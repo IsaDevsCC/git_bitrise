@@ -18,9 +18,10 @@ import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import com.keepcoding.androidsuperpoderes.BuildConfig
 
-
-val baseUrl = "https://dragonball.keepcoding.education/"
+val baseUrl = BuildConfig.BASE_URL
+//val baseUrl = "https://dragonball.keepcoding.education/"
 val dataModule = module {
 
     single {

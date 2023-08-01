@@ -19,6 +19,10 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+
+        buildConfigField "String", "BASE_URL", "\"\""
+        buildConfigField "String", "TOKEN", "\"\""
+
     }
 
     buildTypes {
@@ -29,16 +33,20 @@ android {
 
     productFlavors {
         create("qa") {
-
+            buildConfigField "String", "BASE_URL", "\"https://dragonball.keepcoding.education/\""
+            buildConfigField "String", "TOKEN", "\"eyJhbGciOiJIUzI1NiIsImtpZCI6InByaXZhdGUiLCJ0eXAiOiJKV1QifQ.eyJpZGVudGlmeSI6IjdDNzQ1NjRCLTQ5NUEtNDhCRC04QzIyLTM5OEUwOUREODY0MyIsImV4cGlyYXRpb24iOjY0MDkyMjExMjAwLCJlbWFpbCI6Imp1YW5qZS5jaWxsYTFAZ21haWwuY29tIn0.epMHxtAkVu_fT5FvQwKrm_fRqzT9UOG2gpiTTipQajw\""
         }
         create("dev") {
-
+            buildConfigField "String", "BASE_URL", "\"https://dragonball.keepcoding.education/\""
+            buildConfigField "String", "TOKEN", "\"eyJhbGciOiJIUzI1NiIsImtpZCI6InByaXZhdGUiLCJ0eXAiOiJKV1QifQ.eyJpZGVudGlmeSI6IjdDNzQ1NjRCLTQ5NUEtNDhCRC04QzIyLTM5OEUwOUREODY0MyIsImV4cGlyYXRpb24iOjY0MDkyMjExMjAwLCJlbWFpbCI6Imp1YW5qZS5jaWxsYTFAZ21haWwuY29tIn0.epMHxtAkVu_fT5FvQwKrm_fRqzT9UOG2gpiTTipQajw\""
         }
         create("pre") {
-
+            buildConfigField "String", "BASE_URL", "\"https://dragonball.keepcoding.education/\""
+            buildConfigField "String", "TOKEN", "\"eyJhbGciOiJIUzI1NiIsImtpZCI6InByaXZhdGUiLCJ0eXAiOiJKV1QifQ.eyJpZGVudGlmeSI6IjdDNzQ1NjRCLTQ5NUEtNDhCRC04QzIyLTM5OEUwOUREODY0MyIsImV4cGlyYXRpb24iOjY0MDkyMjExMjAwLCJlbWFpbCI6Imp1YW5qZS5jaWxsYTFAZ21haWwuY29tIn0.epMHxtAkVu_fT5FvQwKrm_fRqzT9UOG2gpiTTipQajw\""
         }
         create("pro") {
-
+            buildConfigField "String", "BASE_URL", "\"https://pro.dragonball.keepcoding.education/\""
+            buildConfigField "String", "TOKEN", "\"token-pro.eyJpZGVudGlmeSI6IjdDNzQ1NjRCLTQ5NUEtNDhCRC04QzIyLTM5OEUwOUREODY0MyIsImV4cGlyYXRpb24iOjY0MDkyMjExMjAwLCJlbWFpbCI6Imp1YW5qZS5jaWxsYTFAZ21haWwuY29tIn0.epMHxtAkVu_fT5FvQwKrm_fRqzT9UOG2gpiTTipQajw\""
         }
     }
 
@@ -131,6 +139,13 @@ dependencies {
     testImplementation 'androidx.arch.core:core-testing:2.2.0'
     testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.1'
     testImplementation 'io.mockk:mockk:1.13.4'
+
+    /* Custom library by environment
+    qaImplementation 'library'
+    devImplementation 'library-no-op'
+    preImplementation 'library-no-op'
+    proImplementation 'library-no-op'
+    */
 
     // AndroidTest
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
