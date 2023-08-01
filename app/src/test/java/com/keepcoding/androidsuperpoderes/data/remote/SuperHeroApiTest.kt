@@ -15,10 +15,12 @@ import okhttp3.logging.HttpLoggingInterceptor
 import org.hamcrest.CoreMatchers.instanceOf
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
+import org.junit.Assert.assertThrows
 import org.junit.Before
 import org.junit.BeforeClass
 import org.junit.Rule
 import org.junit.Test
+import retrofit2.HttpException
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
@@ -79,6 +81,17 @@ class SuperHeroApiTest {
         )
 
         assertThat(result, instanceOf(List::class.java))
+    }
+
+    @Test(expected = HttpException::class)
+    fun `WHEN request unkown location EXPECT throws exception`() = runTest {
+        api.getHeroLocationList(
+            IdDto(
+                "81D51BD2-E82asdfaC-4E1D-8216-BDFB107C1F28"
+            )
+        )
+
+        assert(false)
     }
 
 
