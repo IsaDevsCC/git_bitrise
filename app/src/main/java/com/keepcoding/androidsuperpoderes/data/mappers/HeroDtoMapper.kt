@@ -5,7 +5,7 @@ import com.keepcoding.androidsuperpoderes.data.remote.dto.HeroDto
 import com.keepcoding.androidsuperpoderes.domain.model.HeroModel
 
 fun HeroDto.toHeroModel() = HeroModel(
-    id = id!!,
+    id = id ?: "",
     photoUrl = photo ?: "",
     name = name ?: "",
     description = description ?: ""
