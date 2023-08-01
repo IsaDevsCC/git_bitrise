@@ -19,7 +19,7 @@ class RangeSelectorDelegateTest {
     fun `WHEN moveTop EXPECT bottom is currentTop -1`() {
         rangeSelectorDelegate.currentBottom = 50
         rangeSelectorDelegate.moveTop(45)
-        assertThat(rangeSelectorDelegate.currentBottom, `is`(51))
+        assertThat(rangeSelectorDelegate.currentTop, `is`(51))
     }
 
     @Test
