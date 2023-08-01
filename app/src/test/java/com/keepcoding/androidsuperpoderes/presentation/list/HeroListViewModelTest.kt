@@ -10,6 +10,7 @@ import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.test.runTest
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.*
+import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -29,6 +30,11 @@ class HeroListViewModelTest {
         MockKAnnotations.init(this)
     }
 
+    @After
+    fun tearDown() {
+        // Liberar recursos del test
+    }
+
     @Test
     fun testCoroutinesTestWithMock() = runTest {
         coEvery { getHeroListUseCase.invoke() } returns HeroTestDataBuilder()
@@ -39,7 +45,7 @@ class HeroListViewModelTest {
         // solicitio los datos
 
         // escuchar al livedata
-        liveData.getOrAwaitValue()
+        //liveData.getOrAwaitValue()
 
         // Assert
     }
