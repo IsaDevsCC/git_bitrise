@@ -22,6 +22,42 @@ android {
     }
 
     buildTypes {
+        // Definir y customizar
+    }
+
+    flavorDimensions += "environment"
+
+    productFlavors {
+        create("qa") {
+
+        }
+        create("dev") {
+
+        }
+        create("pre") {
+
+        }
+        create("pro") {
+
+        }
+    }
+
+    /*
+    flavorDimensions += "product"
+
+
+    productFlavors {
+        create("Spain") {
+
+        }
+        create("World") {
+
+        }
+    }
+    */
+
+
+    buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
