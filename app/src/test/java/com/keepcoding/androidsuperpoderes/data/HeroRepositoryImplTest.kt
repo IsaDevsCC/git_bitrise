@@ -54,10 +54,8 @@ class HeroRepositoryImplTest {
 
     @Test
     fun `WHEN getHeroList EXPECT remote data`() = runTest {
-        val testData = getListRemote()
         coEvery { localDataSource.getHeroList() } returns listOf<HeroLocal>()
-        coEvery { remoteDataSource.getHeroList() } returns testData
-        //coEvery { localDataSource.insertHeroList(testData) } returns Unit
+        coEvery { remoteDataSource.getHeroList() } returns getListRemote()
 
         val repo = HeroRepositoryImpl(
             localDataSource = localDataSource,
@@ -69,17 +67,14 @@ class HeroRepositoryImplTest {
         assertThat(res, instanceOf(List::class.java))
         assertThat(res.size, `is`(2))
     }
-
-
-
 }
 
 fun getListLocal() = listOf(
-        HeroLocal("id", "name", "url", true),
-        HeroLocal("id", "name", "url", true)
+        HeroLocal("id", "name", "https://photo-url", true),
+        HeroLocal("id", "name", "https://photo-url", true)
     )
 
 fun getListRemote() = listOf<HeroDto>(
-    HeroDto("id", "name", "url", "description", true),
-    HeroDto("id", "name", "url", "description", true)
+    HeroDto("id", "name", "url", "https://photo-url", true),
+    HeroDto("id", "name", "url", "https://photo-url", true)
 )
