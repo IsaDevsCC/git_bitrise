@@ -26,10 +26,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.keepcoding.androidsuperpoderes.R
+
+const val LOGIN_TEXT_FIELD_USER = "LOGIN_TEXT_FIELD_USER"
+const val LOGIN_TEXT_FIELD_PASSWORD = "LOGIN_TEXT_FIELD_PASSWORD"
 
 @Composable
 fun LoginScreen(
@@ -66,6 +70,7 @@ fun LoginScreen(
         )
 
         TextField(
+            modifier = Modifier.testTag(LOGIN_TEXT_FIELD_USER),
             value = email,
             placeholder = {
                   Text("Email")
@@ -82,6 +87,7 @@ fun LoginScreen(
         )
 
         TextField(
+            modifier = Modifier.testTag(LOGIN_TEXT_FIELD_PASSWORD),
             value = password,
             placeholder = {
                   Text("Password")
@@ -113,7 +119,11 @@ fun LoginScreen(
         )
 
         Button(
-            onClick = onLoginSuccess
+            onClick = {
+                if (authenticate(email, password)) {
+                    onLoginSuccess()
+                }
+            }
         ) {
             Text(
                text = "Login"
@@ -144,6 +154,10 @@ fun LoginScreen(
 
     }
 }
+
+fun authenticate(user: String, password: String) =
+    user == "alextfos@keepcoding.io" && password == "password"
+
 
 @Preview
 @Composable
