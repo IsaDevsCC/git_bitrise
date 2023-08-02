@@ -107,23 +107,20 @@ fun ShowHeroDetail(
             }
 
             // Star
-            AndroidView(
-                modifier = Modifier.clickable {
-                    val newState = !starred
-                    starred = newState
-                },
-                factory = { context ->
-                    StarComponent(context).apply {
-                        this.checked = starred
-                    }
-                },
-                update = {
-                    it.checked = starred
-                }
-            )
 
         }
     }
+
+    // Gestionar la semántica y los cambios de estado
+    Checkbox(
+        modifier = Modifier,
+        checked = {
+
+        },
+        onCheckedChange = {
+
+        }
+    )
 
     /*
     Ejecuta el requestFocus al finalizar la composición de la vista
@@ -136,16 +133,25 @@ fun ShowHeroDetail(
 }
 
 @Composable
-fun AndroidViewTest() {
+fun AndroidViewTest(hero: HeroModel) {
     var starred by remember {
         mutableStateOf(false)
     }
     // Star
     AndroidView(
-        modifier = Modifier.clickable {
-            val newState = !starred
-            starred = newState
-        },
+        modifier = Modifier
+            .semantics {
+                contentDescription = "Hacer ${hero.name} Favorito"
+                stateDescription = if (starred) {
+                    "${hero.name} marked as Favorite"
+                } else {
+                    "${hero.name} marked as not Favorite"
+                }
+            }
+            .clickable {
+                val newState = !starred
+                starred = newState
+            },
         factory = { context ->
             StarComponent(context).apply {
                 this.checked = starred
