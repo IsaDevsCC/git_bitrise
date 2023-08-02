@@ -1,10 +1,12 @@
 package com.keepcoding.androidsuperpoderes.presentation.login
 
-import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.activity.ComponentActivity
+import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
+import com.keepcoding.androidsuperpoderes.R
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Rule
@@ -13,7 +15,7 @@ import org.junit.Test
 
 class LoginScreenTest {
     @get:Rule
-    val rule = createComposeRule()
+    val rule = createAndroidComposeRule<ComponentActivity>()
 
     @Test
     fun testLoginSuccess() {
@@ -24,6 +26,8 @@ class LoginScreenTest {
             }, onForgotClicked = {})
         }
 
+        val loginText = rule.activity.getString(R.string.login)
+
         // Localizar las vistas de los Inputs y setear credenciales
         rule.onNodeWithTag(LOGIN_TEXT_FIELD_USER)
             .performTextInput("alextfos@keepcoding.io")
@@ -31,7 +35,7 @@ class LoginScreenTest {
         rule.onNodeWithTag(LOGIN_TEXT_FIELD_PASSWORD)
             .performTextInput("password")
 
-        rule.onNodeWithText("Login").performClick()
+        rule.onNodeWithText(loginText).performClick()
 
         assertThat(logged, `is`(true))
     }
@@ -45,6 +49,7 @@ class LoginScreenTest {
             }, onForgotClicked = {})
         }
 
+        val loginText = rule.activity.getString(R.string.login)
         // Localizar las vistas de los Inputs y setear credenciales
         rule.onNodeWithTag(LOGIN_TEXT_FIELD_USER)
             .performTextInput("alextfos@keepcoding.io")
@@ -52,7 +57,7 @@ class LoginScreenTest {
         rule.onNodeWithTag(LOGIN_TEXT_FIELD_PASSWORD)
             .performTextInput("password1")
 
-        rule.onNodeWithText("Login").performClick()
+        rule.onNodeWithText(loginText).performClick()
 
         assertThat(logged, `is`(false))
     }
