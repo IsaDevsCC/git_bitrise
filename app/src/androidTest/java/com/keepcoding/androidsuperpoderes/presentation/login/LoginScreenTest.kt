@@ -28,6 +28,9 @@ class LoginScreenTest {
         rule.onNodeWithTag(LOGIN_TEXT_FIELD_USER)
             .performTextInput("alextfos@keepcoding.io")
 
+        rule.onNodeWithTag(LOGIN_TEXT_FIELD_PASSWORD)
+            .performTextInput("password")
+
         rule.onNodeWithText("Login").performClick()
 
         assertThat(logged, `is`(true))
@@ -35,6 +38,22 @@ class LoginScreenTest {
 
     @Test
     fun testLoginFail() {
+        var logged = false
+        rule.setContent {
+            LoginScreen(onLoginSuccess = {
+                logged = true
+            }, onForgotClicked = {})
+        }
 
+        // Localizar las vistas de los Inputs y setear credenciales
+        rule.onNodeWithTag(LOGIN_TEXT_FIELD_USER)
+            .performTextInput("alextfos@keepcoding.io")
+
+        rule.onNodeWithTag(LOGIN_TEXT_FIELD_PASSWORD)
+            .performTextInput("password1")
+
+        rule.onNodeWithText("Login").performClick()
+
+        assertThat(logged, `is`(false))
     }
 }
