@@ -25,6 +25,7 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
@@ -107,20 +108,25 @@ fun ShowHeroDetail(
             }
 
             // Star
-
+            // Gestionar la semántica y los cambios de estado
+            Checkbox(
+                modifier = Modifier
+                    .clearAndSetSemantics {
+                    //.semantics {
+                    contentDescription = "Hacer ${hero.name} Favorito"
+                    stateDescription = if (starred) {
+                        "${hero.name} marcado como Favorito"
+                    } else {
+                        "${hero.name} desmarcado como Favorito"
+                    }
+                },
+                checked = starred,
+                onCheckedChange = {
+                    starred = it
+                }
+            )
         }
     }
-
-    // Gestionar la semántica y los cambios de estado
-    Checkbox(
-        modifier = Modifier,
-        checked = {
-
-        },
-        onCheckedChange = {
-
-        }
-    )
 
     /*
     Ejecuta el requestFocus al finalizar la composición de la vista
