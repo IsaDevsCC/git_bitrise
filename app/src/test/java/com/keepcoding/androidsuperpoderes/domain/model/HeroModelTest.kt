@@ -13,7 +13,7 @@ class HeroModelTest {
     var heroModel = HeroModel(
         "56",
         "Alex",
-        "foto",
+        "https://foto",
         "descripcion"
     )
 

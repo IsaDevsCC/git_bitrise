@@ -18,16 +18,16 @@ class HeroRepositoryImpl(
         val localData = localDataSource.getHeroList()
 
         // Lógica de coordinación de datos
-        if (localData.isNotEmpty()) {
-            return localData.map { it.toHeroModel() }
+        return if (localData.isNotEmpty()) {
+            localData.map { it.toHeroModel() }
         } else {
             val remoteData = remoteDataSource.getHeroList().filter {
                 (it.id?.isNotEmpty() == true) &&
-                (it.photo?.hasHttps() == true)
+                        (it.photo?.hasHttps() == true)
             }
             localDataSource.insertHeroList(remoteData.map { it.toHeroLocal() })
 
-            return remoteData.map {
+            remoteData.map {
                 it.toHeroModel()
             }
         }
