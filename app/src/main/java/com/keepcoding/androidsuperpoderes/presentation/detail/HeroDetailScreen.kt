@@ -3,7 +3,6 @@ package com.keepcoding.androidsuperpoderes.presentation.detail
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import com.keepcoding.androidsuperpoderes.components.ShowError
-import com.keepcoding.androidsuperpoderes.presentation.common.ShowHero
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -26,7 +25,7 @@ fun HeroDetailScreen(
     // Side Effects
     // Mutabilidad
     result?.let { hero ->
-        ShowHero(hero = hero)
+        ShowHeroDetail(hero = hero)
     } ?: run {
         ShowError("Unknown error")
     }

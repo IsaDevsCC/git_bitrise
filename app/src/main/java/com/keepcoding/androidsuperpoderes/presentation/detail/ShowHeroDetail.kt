@@ -1,4 +1,4 @@
-package com.keepcoding.androidsuperpoderes.presentation.common
+package com.keepcoding.androidsuperpoderes.presentation.detail
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -38,9 +38,8 @@ import com.keepcoding.androidsuperpoderes.presentation.theme.globalRoundedCorner
 // Ejercicio en mostrar un diseño de un Hero
 // Mostrar la imagen con coil
 @Composable
-fun ShowHero(
-    hero: HeroModel,
-    onClick: (() -> Unit)? = null
+fun ShowHeroDetail(
+    hero: HeroModel
 ) {
     /* Ejemplo de condicional en la vista
     var state by remember {
@@ -56,67 +55,58 @@ fun ShowHero(
         mutableStateOf(false)
     }
 
-    Card(
-        modifier = Modifier.padding(globalPadding),
-        elevation = globalElevation,
-        shape = RoundedCornerShape(globalRoundedCornerShape)
+    Row(
+        modifier = Modifier
+            .padding(8.dp)
+            .fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically
     ) {
-        Row(
+        AsyncImage(
             modifier = Modifier
-                .padding(8.dp)
-                .fillMaxWidth()
-                .clickable {
-                    onClick?.invoke()
-                },
+                .size(100.dp)
+                .clip(CircleShape),
+            placeholder = painterResource(id = R.drawable.ball),
+            error = painterResource(id = R.drawable.ball),
+            model = ImageRequest.Builder(LocalContext.current)
+                .data(hero.photoUrl)
+                .build(), contentDescription = ""
+        )
+        Row(
+            modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            AsyncImage(
-                modifier = Modifier
-                    .size(100.dp)
-                    .clip(CircleShape),
-                placeholder = painterResource(id = R.drawable.ball),
-                error = painterResource(id = R.drawable.ball),
-                model = ImageRequest.Builder(LocalContext.current)
-                    .data(hero.photoUrl)
-                    .build(), contentDescription = ""
-            )
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
+            Column(
+                modifier = Modifier.weight(1f),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Column(
-                    modifier = Modifier.weight(1f),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text(
-                        text = hero.name,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                    Text(
-                        text = hero.description,
-                        maxLines = 4,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                }
-
-                // Star
-                AndroidView(
-                    modifier = Modifier.clickable {
-                        val newState = !starred
-                        starred = newState
-                    },
-                    factory = { context ->
-                        StarComponent(context).apply {
-                            this.checked = starred
-                        }
-                    },
-                    update = {
-                        it.checked = starred
-                    }
+                Text(
+                    text = hero.name,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
                 )
-
+                Text(
+                    text = hero.description,
+                    maxLines = 4,
+                    overflow = TextOverflow.Ellipsis
+                )
             }
+
+            // Star
+            AndroidView(
+                modifier = Modifier.clickable {
+                    val newState = !starred
+                    starred = newState
+                },
+                factory = { context ->
+                    StarComponent(context).apply {
+                        this.checked = starred
+                    }
+                },
+                update = {
+                    it.checked = starred
+                }
+            )
+
         }
     }
 }
@@ -125,13 +115,11 @@ fun ShowHero(
 @Composable
 @Preview
 fun ShowHeroPreview() {
-    ShowHero(
+    ShowHeroDetail(
         HeroTestDataBuilder()
             .withName("Sample name long text long text long text long textlong text long text long text")
             .withDescription("")
 
             .buildSingle()
-    ) {
-        // Nothing todo here
-    }
+    )
 }

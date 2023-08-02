@@ -7,6 +7,7 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.printToLog
 import com.keepcoding.androidsuperpoderes.HeroTestDataBuilder
+import com.keepcoding.androidsuperpoderes.presentation.detail.ShowHero
 import org.junit.Rule
 import org.junit.Test
 

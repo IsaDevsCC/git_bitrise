@@ -44,11 +44,13 @@ fun LoginScreen(
 ) {
 
     var email by remember {
-        mutableStateOf("")
+        // mutableStateOf("")
+        mutableStateOf("alextfos@keepcoding.io")
     }
 
     var password by remember {
-        mutableStateOf("")
+        mutableStateOf("password")
+        //mutableStateOf("")
     }
 
     Column(
@@ -61,7 +63,7 @@ fun LoginScreen(
         Image(
             modifier = Modifier.size(150.dp),
             painter = painterResource(id = R.drawable.ball),
-            contentDescription = "SuperHero Application Logo"
+            contentDescription = "SuperHero Application"
         )
 
         Spacer(

@@ -8,7 +8,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.keepcoding.androidsuperpoderes.components.ShowError
-import com.keepcoding.androidsuperpoderes.presentation.common.ShowHero
 import com.keepcoding.androidsuperpoderes.presentation.theme.globalPadding
 import org.koin.androidx.compose.koinViewModel
 
@@ -37,7 +36,7 @@ fun HeroListScreen(
             // Unwrap
             val item = heroList?.get(i)
             item?.let { hero ->
-                ShowHero(hero) {
+                ShowHeroList(hero) {
                     onItemClick.invoke(hero.id)
                 }
             }
