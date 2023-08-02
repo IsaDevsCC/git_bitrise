@@ -1,6 +1,7 @@
 package com.keepcoding.androidsuperpoderes.presentation.detail
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,6 +13,7 @@ import androidx.compose.material.Card
 import androidx.compose.material.Checkbox
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -19,6 +21,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.contentDescription
@@ -37,10 +41,14 @@ import com.keepcoding.androidsuperpoderes.domain.model.HeroModel
 import com.keepcoding.androidsuperpoderes.presentation.theme.globalElevation
 import com.keepcoding.androidsuperpoderes.presentation.theme.globalPadding
 import com.keepcoding.androidsuperpoderes.presentation.theme.globalRoundedCornerShape
+import kotlinx.coroutines.job
 
 
 // Ejercicio en mostrar un diseño de un Hero
 // Mostrar la imagen con coil
+
+val requester = FocusRequester()
+
 @Composable
 fun ShowHeroDetail(
     hero: HeroModel
@@ -68,12 +76,15 @@ fun ShowHeroDetail(
         AsyncImage(
             modifier = Modifier
                 .size(100.dp)
-                .clip(CircleShape),
+                .clip(CircleShape)
+                .focusRequester(focusRequester = requester)
+                .focusable(),
             placeholder = painterResource(id = R.drawable.ball),
             error = painterResource(id = R.drawable.ball),
             model = ImageRequest.Builder(LocalContext.current)
                 .data(hero.photoUrl)
-                .build(), contentDescription = ""
+                .build(),
+            contentDescription = "Personaje ${ hero.name } Imagen"
         )
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -111,6 +122,15 @@ fun ShowHeroDetail(
                 }
             )
 
+        }
+    }
+
+    /*
+    Ejecuta el requestFocus al finalizar la composición de la vista
+     */
+    LaunchedEffect(Unit) {
+        this.coroutineContext.job.invokeOnCompletion {
+            requester.requestFocus()
         }
     }
 }
