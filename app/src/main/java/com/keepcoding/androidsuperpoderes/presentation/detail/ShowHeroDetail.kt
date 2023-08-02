@@ -55,9 +55,6 @@ fun ShowHeroDetail(
     }
     */
 
-    // TopAppBar que permita hacer back
-
-
     var starred by remember {
         mutableStateOf(false)
     }

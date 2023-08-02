@@ -10,6 +10,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import com.keepcoding.androidsuperpoderes.components.ShowError
 import org.koin.androidx.compose.koinViewModel
@@ -44,6 +47,9 @@ fun HeroDetailScreen(
                     },
                     navigationIcon = {
                         IconButton(
+                            modifier = Modifier.semantics {
+                                  contentDescription = "Atrás Botón Ir al listado de personajes"
+                            },
                             onClick = onBack
                         ) {
                             Icon(Icons.Filled.ArrowBack, null)
