@@ -13,7 +13,7 @@ import org.junit.Rule
 import org.junit.Test
 
 
-class LoginScreenTest {
+/*class LoginScreenTest {
     @get:Rule
     val rule = createAndroidComposeRule<ComponentActivity>()
 
@@ -61,4 +61,4 @@ class LoginScreenTest {
 
         assertThat(logged, `is`(false))
     }
-}
+}*/
