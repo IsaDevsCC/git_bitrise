@@ -1,0 +1,13 @@
+herodto :
+- id : "123"
+  name : "goku"
+  description : "description"
+  photo : "url//https.google.com"
+  favorite : false
+  locations :
+    - id: "134"
+      dateshow: "yes"
+      longitud: "-04.98799"
+      latitud: "-04.98799"
+      heroid :
+        - id: "123"
